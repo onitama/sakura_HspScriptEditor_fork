@@ -1,14 +1,24 @@
 ﻿#pragma once
 #include <windows.h>
+#include "../../hsp3/hsp3config.h"
+#include "../../hsp3/hsp3struct.h"
 
 // 基本的に使わない
-typedef BOOL(CALLBACK *HSPDLLFUNC)(int, int, int, int);
+typedef BOOL(CALLBACK *HSPDLLFUNC)(HSPPTRINT, HSPPTRINT, HSPPTRINT, HSPPTRINT);
 
 // こちらを優先
-typedef BOOL(CALLBACK *HSPDLLFUNC_IIII)(int, int, int, int);
-typedef BOOL(CALLBACK *HSPDLLFUNC_PIII)(void*, int, int, int);
-typedef BOOL(CALLBACK *HSPDLLFUNC_PPII)(void*, void*, int, int);
-typedef BOOL(CALLBACK *HSPDLLFUNC_IIIP)(int, int, int, void*);
+typedef BOOL(CALLBACK *HSPDLLFUNC_IIII)(HSPPTRINT, HSPPTRINT, HSPPTRINT, HSPPTRINT);
+typedef BOOL(CALLBACK *HSPDLLFUNC_PIII)(void*, HSPPTRINT, HSPPTRINT, HSPPTRINT);
+typedef BOOL(CALLBACK *HSPDLLFUNC_PPII)(void*, void*, HSPPTRINT, HSPPTRINT);
+typedef BOOL(CALLBACK *HSPDLLFUNC_IIIP)(HSPPTRINT, HSPPTRINT, HSPPTRINT, void*);
+
+#ifdef HSP64
+#define HSPFUNCHEADER ""
+#define HSPFUNCFOOTER ""
+#else
+#define HSPFUNCHEADER "_"
+#define HSPFUNCFOOTER "@16"
+#endif
 
 class CHsp3Dll
 {
@@ -81,30 +91,30 @@ public:
 		if ( m_hDLL == nullptr)
 			return false;
 
-		m_hsc_ini			= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, "_hsc_ini@16");
-		m_hsc_refname		= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, "_hsc_refname@16");
-		m_hsc_objname		= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, "_hsc_objname@16");
-		m_hsc_comp			= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, "_hsc_comp@16");
-		m_hsc_getmes		= (HSPDLLFUNC_PIII)::GetProcAddress(m_hDLL, "_hsc_getmes@16");
-		m_hsc_clrmes		= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, "_hsc_clrmes@16");
-		m_hsc_ver			= (HSPDLLFUNC_IIIP)::GetProcAddress(m_hDLL, "_hsc_ver@16");
-		m_hsc_bye			= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, "_hsc_bye@16");
-		m_pack_ini			= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, "_pack_ini@16");
-		m_pack_make			= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, "_pack_make@16");
-		m_pack_exe			= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, "_pack_exe@16");
-		m_pack_opt			= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, "_pack_opt@16");
-		m_pack_rt			= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, "_pack_rt@16");
-		m_hsc3_getsym		= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, "_hsc3_getsym@16");
-		m_hsc3_make			= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, "_hsc3_make@16");
-		m_hsc3_messize		= (HSPDLLFUNC_PIII)::GetProcAddress(m_hDLL, "_hsc3_messize@16");
-		m_hsc3_getruntime	= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, "_hsc3_getruntime@16");
-		m_hsc3_run			= (HSPDLLFUNC_PIII)::GetProcAddress(m_hDLL, "_hsc3_run@16");
+		m_hsc_ini			= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc_ini" HSPFUNCFOOTER );
+		m_hsc_refname		= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc_refname" HSPFUNCFOOTER );
+		m_hsc_objname		= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc_objname" HSPFUNCFOOTER );
+		m_hsc_comp			= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc_comp" HSPFUNCFOOTER );
+		m_hsc_getmes		= (HSPDLLFUNC_PIII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc_getmes" HSPFUNCFOOTER );
+		m_hsc_clrmes		= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc_clrmes" HSPFUNCFOOTER );
+		m_hsc_ver			= (HSPDLLFUNC_IIIP)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc_ver" HSPFUNCFOOTER );
+		m_hsc_bye			= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc_bye" HSPFUNCFOOTER );
+		m_pack_ini			= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "pack_ini" HSPFUNCFOOTER );
+		m_pack_make			= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "pack_make" HSPFUNCFOOTER );
+		m_pack_exe			= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "pack_exe" HSPFUNCFOOTER );
+		m_pack_opt			= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "pack_opt" HSPFUNCFOOTER );
+		m_pack_rt			= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "pack_rt" HSPFUNCFOOTER );
+		m_hsc3_getsym		= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc3_getsym" HSPFUNCFOOTER );
+		m_hsc3_make			= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc3_make" HSPFUNCFOOTER );
+		m_hsc3_messize		= (HSPDLLFUNC_PIII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc3_messize" HSPFUNCFOOTER );
+		m_hsc3_getruntime	= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc3_getruntime" HSPFUNCFOOTER );
+		m_hsc3_run			= (HSPDLLFUNC_PIII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc3_run" HSPFUNCFOOTER );
 
 		// 3.7
-		m_hsc3_kwlbuf		= (HSPDLLFUNC_PIII)::GetProcAddress(m_hDLL, "_hsc3_kwlbuf@16");
-		m_hsc3_kwlsize		= (HSPDLLFUNC_PIII)::GetProcAddress(m_hDLL, "_hsc3_kwlsize@16");
-		m_hsc3_kwlclose		= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, "_hsc3_kwlclose@16");
-		m_hsc3_analysis		= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, "_hsc3_analysis@16");
+		m_hsc3_kwlbuf		= (HSPDLLFUNC_PIII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc3_kwlbuf" HSPFUNCFOOTER );
+		m_hsc3_kwlsize		= (HSPDLLFUNC_PIII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc3_kwlsize" HSPFUNCFOOTER );
+		m_hsc3_kwlclose		= (HSPDLLFUNC_IIII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc3_kwlclose" HSPFUNCFOOTER );
+		m_hsc3_analysis		= (HSPDLLFUNC_PPII)::GetProcAddress(m_hDLL, HSPFUNCHEADER "hsc3_analysis" HSPFUNCFOOTER );
 		IsLoaded37();
 
 		// 返すのは基本のみ

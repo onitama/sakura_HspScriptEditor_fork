@@ -335,7 +335,6 @@ BOOL CHsp3::HscRunW( const CNativeW& strExeCmds) const
 	CNativeA strExeCmdsA;
 	CShiftJis::UnicodeToSJIS(strExeCmds, strExeCmdsA._GetMemory());
 
-	// 実行
 	return m_pHsp3Dll->hsc3_run()(
 		(void*)strExeCmdsA.GetStringPtr(), IsShowDebugWindow() ? 1 : 0, 0, 0);
 }
@@ -597,7 +596,7 @@ bool CHsp3::Run(
 
 	// ランタイム起動のためのコマンドライン引数を組み立てる
 	CNativeW strExeCmd;
-	strExeCmd.AppendStringF(L"\"%s\" \"%s\"", exePath, strHSPObjFilePath);
+	strExeCmd.AppendStringF(L"\"%s\" \"%s\"", exePath, strHSPObjFilePath.GetStringPtr());
 	{
 		// エディタ側で指定したコマンドライン引数がある場合は追記する
 		CNativeW strOriginalCmd;

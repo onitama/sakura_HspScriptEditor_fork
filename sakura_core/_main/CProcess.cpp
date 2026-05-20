@@ -74,7 +74,11 @@ bool CProcess::InitializeProcess()
 
 	/* HSP系初期化(コンパイラDLL) */
 	WCHAR	cmdline[1024];
+#ifdef X64
+	GetExedir( cmdline, L"hspcmp_64.dll");
+#else
 	GetExedir( cmdline, L"hspcmp.dll");
+#endif
 	if ( !m_Hsp3.Load( cmdline))
 	{
 		::MYMESSAGEBOX(NULL, MB_OK | MB_ICONERROR,

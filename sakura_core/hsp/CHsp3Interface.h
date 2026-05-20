@@ -1,8 +1,9 @@
 ﻿#pragma once
 #include <windows.h>
 #include "env/DLLSHAREDATA.h"
+#include "CHsp3Dll.h"
 
-typedef BOOL(CALLBACK *HSPDLLFUNC)(int, int, int, int);
+typedef BOOL(CALLBACK *HSPDLLFUNC)(HSPPTRINT, HSPPTRINT, HSPPTRINT, HSPPTRINT);
 
 class CEditWnd;
 class CHsp3Interface
