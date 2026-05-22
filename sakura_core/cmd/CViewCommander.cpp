@@ -637,6 +637,9 @@ BOOL CViewCommander::HandleCommand(
 	case F_HSP_JUMP_ALL_REFERENCES:				/* すべての参照を検索 */
 		Command_HSP_JUMP_ALL_REFERENCES();
 		break;
+	case F_HSP_USE_32BIT_RUNTIME:				/* 32bitランタイムを使用(&X) */
+		Command_HSP_USE_32BIT_RUNTIME();
+		break;
 
 	/* カスタムメニュー */
 	case F_MENU_RBUTTON:	/* 右クリックメニュー */

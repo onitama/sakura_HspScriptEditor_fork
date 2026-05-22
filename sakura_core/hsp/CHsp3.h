@@ -146,6 +146,11 @@ public:
 		return GetDllShareData().m_Common.m_sHSP.m_bShowDebugWindow;
 	}
 
+	inline const bool IsUse32bitRuntime() const
+	{
+		return GetDllShareData().m_Common.m_sHSP.m_bUse32bitRuntime;
+	}
+
 	inline const bool IsExecuteExternalFile_Utf8Mode() const
 	{
 		return GetDllShareData().m_Common.m_sHSP.m_bExecuteExternalFile_UTF8Mode;
@@ -156,9 +161,14 @@ public:
 		GetDllShareData().m_Common.m_sHSP.m_bExecuteExternalFile_UTF8Mode = bUtf8Mode;
 	}
 
-	inline void SetShowDebugWindow( bool bShowDebugWindow) const
+	inline void SetShowDebugWindow(bool bShowDebugWindow) const
 	{
 		GetDllShareData().m_Common.m_sHSP.m_bShowDebugWindow = bShowDebugWindow;
+	}
+
+	inline void SetUse32bitRuntime(bool bUse32bitRuntime) const
+	{
+		GetDllShareData().m_Common.m_sHSP.m_bUse32bitRuntime = bUse32bitRuntime;
 	}
 
 	inline const bool IsHspAssistantAutoStartEnabled() const

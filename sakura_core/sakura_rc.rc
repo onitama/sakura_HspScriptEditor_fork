@@ -2984,7 +2984,8 @@ BEGIN
     F_HSP_RESV_KEYWORD_LIST "予約キーワード一覧..."
     F_HSP_RUN_OPTIONS       "起動オプション..."
     F_HSP_SHOW_DEBUG_WINDOW "Debugウィンドウ表示"
-    F_HSP_OPEN_SRC_FOLDER   "ソースフォルダを開く..."
+	F_HSP_USE_32BIT_RUNTIME "32bitランタイムを使用する"
+	F_HSP_OPEN_SRC_FOLDER   "ソースフォルダを開く..."
     F_HSP_RUN_ASSIST        "HSPアシスタント起動..."
     F_HSP_RUN_HSPTV         "HSPTVブラウザ起動..."
     F_HSP_CONVERT_DISH_C    "HSP3Dish / Cソース変換..."
@@ -3822,7 +3823,7 @@ END
 
 STRINGTABLE
 BEGIN
-    STR_DLGABOUT_APPNAME    "ＨＳＰスクリプトエディタ Powered by sakura"
+    STR_DLGABOUT_APPNAME    "HSPスクリプトエディタ Powered by sakura"
     STR_DLGEXEC_SELECT_CURDIR "カレントディレクトリを選んでください"
     STR_PROPEDIT_SELECT_DIR "ファイルダイアログの指定フォルダーの選択"
     STR_DLGTYPEASC_IMPORT   "--そのままインポート--"

@@ -527,6 +527,7 @@ const EFunctionCode pnFuncList_HSP[] = {
 	F_HSP_RESV_KEYWORD_LIST			,	/* 予約キーワード一覧(&K) */
 	F_HSP_RUN_OPTIONS				,	/* 起動オプション(&O) */
 	F_HSP_SHOW_DEBUG_WINDOW			,	/* Debugウィンドウ表示(&D) */
+	F_HSP_USE_32BIT_RUNTIME			,	/* デフォルトで32bitランタイムを使用する */
 	F_HSP_OPEN_SRC_FOLDER			,	/* ソースフォルダを開く(&O) */
 	F_HSP_RUN_ASSIST				,	/* HSPアシスタント起動(&F) */
 	F_HSP_RUN_HSPTV					,	/* HSPTVブラウザ起動(&H) */
@@ -1374,7 +1375,12 @@ bool IsFuncChecked( const CEditDoc* pcEditDoc, const DLLSHAREDATA* pShareData, E
 		const auto& Hsp3 = CProcess::getInstance()->GetHsp3();
 		return Hsp3.IsShowDebugWindow();
 	}
-		
+	case F_HSP_USE_32BIT_RUNTIME:
+	{
+		const auto& Hsp3 = CProcess::getInstance()->GetHsp3();
+		return Hsp3.IsUse32bitRuntime();
+	}
+
 	}
 	//End 2004.07.14 Kazika
 
@@ -1421,7 +1427,8 @@ bool IsFuncCheckItem(EFunctionCode nId)
 		case F_ISEARCH_MIGEMO_PREV:
 		case F_OUTLINE_TOGGLE:
 		case F_HSP_SHOW_DEBUG_WINDOW:
-		return true;
+		case F_HSP_USE_32BIT_RUNTIME:
+			return true;
 	}
 
 	return false;

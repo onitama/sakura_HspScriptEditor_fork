@@ -395,6 +395,7 @@ public:
 	void Command_HSP_JUMP_ALL_REFERENCES(void);
 	void Command_HSP_HIGHLIGHT_KEYWORDS(void);
 	void Command_HSP_TOGGLE_LINE_COMMENT(void);
+	void Command_HSP_USE_32BIT_RUNTIME(void);
 
 	/* カスタムメニュー */
 	void Command_MENU_RBUTTON( void );	/* 右クリックメニュー */

@@ -547,15 +547,21 @@ bool CHsp3::CompileRun(
 
 	// コンパイルオプション
 	int opt = 0;
+	int mode = 0;
 	if ( bMakePack)
 		opt |= 4;	/* HSC3_OPT_MAKEPACK */
 	if ( bInputUtf8Mode)
 		opt |= 32;	/* HSC3_OPT_UTF8IN */
+	if (bReleaseMode)
+		mode |= 1; /* HSC3_OPT_DEBUGMODE */
+
+	if (IsUse32bitRuntime() == false) {
+		//	デフォルトで64bitランタイムを使用する
+		mode |= 128+4;	/* HSC3_OPT_RUNTIME64 */
+	}
 
 	// コンパイル実行
-	auto ret = HscCmp(
-		bReleaseMode ? 0 : 1 /* HSC3_OPT_DEBUGMODE */,
-		opt, IsShowDebugWindow() ? 1 : 0, 0);
+	auto ret = HscCmp( mode, opt, IsShowDebugWindow() ? 1 : 0, 0);
 
 	// コンパイルに失敗したか、
 	// 強制的にダイアログを表示するモードの場合

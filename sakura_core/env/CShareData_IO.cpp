@@ -2308,6 +2308,8 @@ void CShareData_IO::IO_HSP(CDataProfile& cProfile, CommonSetting_HSP& hsp)
 		// ファイルから読み込み
 		if (!cProfile.IOProfileData(pszSecName, LTEXT("ShowDebugWindow"), hsp.m_bShowDebugWindow))
 			hsp.m_bShowDebugWindow = false;
+		if (!cProfile.IOProfileData(pszSecName, LTEXT("Use32bitRuntime"), hsp.m_bUse32bitRuntime))
+			hsp.m_bUse32bitRuntime = false;
 
 		if (!cProfile.IOProfileData(pszSecName, LTEXT("AssistantAutoStartEnabled"), hsp.m_bHspAssistantAutoStartEnabled))
 			hsp.m_bHspAssistantAutoStartEnabled = true;
@@ -2322,6 +2324,7 @@ void CShareData_IO::IO_HSP(CDataProfile& cProfile, CommonSetting_HSP& hsp)
 	{
 		// 書き込み時
 		cProfile.IOProfileData(pszSecName, LTEXT("ShowDebugWindow"), hsp.m_bShowDebugWindow);
+		cProfile.IOProfileData(pszSecName, LTEXT("Use32bitRuntime"), hsp.m_bUse32bitRuntime);
 		cProfile.IOProfileData(pszSecName, LTEXT("AssistantAutoStartEnabled"), hsp.m_bHspAssistantAutoStartEnabled);
 		cProfile.IOProfileData(pszSecName, LTEXT("UseLegacyLabelAnalysis"), hsp.m_bUseLegacyLabelAnalysis);
 		cProfile.IOProfileData(pszSecName, LTEXT("AutoSaveBeforeCompile"), hsp.m_bAutoSaveBeforeCompile);

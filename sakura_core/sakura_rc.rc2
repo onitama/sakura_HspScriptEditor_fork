@@ -110,7 +110,7 @@ BEGIN
         BEGIN
             VALUE "Comments", "このソフトはフリーソフトです。\0"
             VALUE "CompanyName", "Project: Sakura-Editor\0"
-            VALUE "FileDescription", "ＨＳＰスクリプトエディタ Powered by sakura\0"
+            VALUE "FileDescription", "HSPスクリプトエディタ Powered by sakura\0"
             VALUE "FileVersion", VERSION_STR
             VALUE "InternalName", "sakura\0"
             VALUE "LegalCopyright", S_COPYRIGHT

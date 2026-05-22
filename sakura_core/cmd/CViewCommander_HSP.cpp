@@ -430,6 +430,13 @@ void CViewCommander::Command_HSP_SHOW_DEBUG_WINDOW(void)
 	return;
 }
 
+void CViewCommander::Command_HSP_USE_32BIT_RUNTIME(void)
+{
+	auto& Hsp3 = CProcess::getInstance()->GetHsp3();
+	Hsp3.SetUse32bitRuntime(!Hsp3.IsUse32bitRuntime());
+	return;
+}
+
 void CViewCommander::Command_HSP_OPEN_SRC_FOLDER(void)
 {
 	const auto& Hsp3 = CProcess::getInstance()->GetHsp3();

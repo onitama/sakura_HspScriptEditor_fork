@@ -721,6 +721,7 @@ struct CommonSetting_HSP
 	wchar_t			m_szExecuteExternalFile_Name[_MAX_PATH];		//!< (未保存)外部ファイル実行のファイル名
 	bool			m_bExecuteExternalFile_CreateObjectOnly;		//!< (未保存)外部ファイル実行のオブジェクト作成のみ
 	bool			m_bShowDebugWindow;								//!< Debugウィンドウ表示
+	bool			m_bUse32bitRuntime;								//!< 32bitランタイムを使用する
 	bool			m_bHspAssistantAutoStartEnabled;				//!< 起動時にHSPアシスタントを自動起動
 	bool			m_bExecuteExternalFile_UTF8Mode;				//!< (未保存)外部ファイル実行のUTF-8モード
 	bool			m_bUseLegacyLabelAnalysis;						//!< 従来方式のラベル解析を優先する(HSP 3.6互換)
