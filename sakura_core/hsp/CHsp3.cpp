@@ -552,7 +552,7 @@ bool CHsp3::CompileRun(
 		opt |= 4;	/* HSC3_OPT_MAKEPACK */
 	if ( bInputUtf8Mode)
 		opt |= 32;	/* HSC3_OPT_UTF8IN */
-	if (bReleaseMode)
+	if (!bReleaseMode)
 		mode |= 1; /* HSC3_OPT_DEBUGMODE */
 
 	if (IsUse32bitRuntime() == false) {

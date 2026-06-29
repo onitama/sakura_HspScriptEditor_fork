@@ -72,7 +72,7 @@ void CViewCommander::Command_FILENEW( void )
 	/* 新たな編集ウィンドウを起動 */
 	SLoadInfo sLoadInfo;
 	sLoadInfo.cFilePath = L"";
-	sLoadInfo.eCharCode = CODE_NONE;
+	sLoadInfo.eCharCode = CODE_DEFAULT;// CODE_NONE;
 	sLoadInfo.bViewMode = false;
 	std::wstring curDir = CSakuraEnvironment::GetDlgInitialDir();
 	CControlTray::OpenNewEditor( G_AppInstance(), m_pCommanderView->GetHwnd(), sLoadInfo, NULL, false, curDir.c_str(), false );
