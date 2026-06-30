@@ -274,6 +274,7 @@ public:
 	bool OpenSrcFolder_File(HWND hParent, const CNativeW& strFilePath) const;
 	bool RunAssist(HWND hParent) const;
 	bool RunAssistAtOnce(HWND hParent) const;
+	bool CloseAssist(HWND hParent) const;
 	bool RunHSPTV(HWND hParent) const;
 	bool CreateDPM(HWND hParent) const;
 	bool CreatePackopt(HWND hParent) const;

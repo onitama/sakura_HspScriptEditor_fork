@@ -209,6 +209,56 @@ static HRESULT SelectFolder(HWND hwnd, std::wstring &folderPath)
 	return S_OK;
 }
 
+/*------------------------------------------------------------*/
+/*
+		external application capture functions
+*/
+/*------------------------------------------------------------*/
+
+static	HWND tarhw = NULL;
+static	char wtitle[256];
+static	int stobj, objcnt;
+
+static BOOL CALLBACK cbWins(HWND hwnd, LPARAM lParam)
+{
+	int a;
+	char a1;
+	wchar_t namtmp[1024];
+	char* ptr;
+
+	objcnt++;
+	if (objcnt < stobj) return TRUE;
+	GetWindowText(hwnd, namtmp, 256);
+	// UTF-16 -> Shift_JIS
+	CNativeA nameA;
+	CShiftJis::UnicodeToSJIS(namtmp, nameA._GetMemory());
+	ptr = (char*)nameA.GetStringPtr();
+
+	a = 0;
+	while (1) {
+		a1 = wtitle[a]; if (a1 == 0) break;
+		if (a1 != namtmp[a]) return TRUE;
+		a++;
+	}
+	tarhw = hwnd;
+	return FALSE;
+}
+
+HWND main_aplsel(const char* p1)
+{
+	tarhw = NULL;
+	objcnt = 0; stobj = 1;
+	strcpy(wtitle, p1);
+	EnumWindows((WNDENUMPROC)&cbWins, 0);
+	if (tarhw == NULL) return NULL;
+	return tarhw;
+}
+
+/*------------------------------------------------------------*/
+/*
+		external HSP3 functions
+*/
+/*------------------------------------------------------------*/
 
 bool CHsp3::Load(const CNativeW& strLibFileName)
 {
@@ -830,6 +880,21 @@ bool CHsp3::RunAssistAtOnce(HWND hParent) const
 	}
 	return false;
 }
+
+bool CHsp3::CloseAssist(HWND hParent) const
+{
+	HWND hw;
+	hw = main_aplsel("HSP assistant ver");
+	if (hw == NULL) return false;
+	PostMessage(hw, WM_CLOSE, 0, 0);
+	while (1) {
+		Sleep(500);
+		hw = main_aplsel("HSP assistant ver");
+		if (hw == NULL) break;
+	}
+	return true;
+}
+
 
 bool CHsp3::RunHSPTV(HWND hParent) const
 {

@@ -466,6 +466,13 @@ bool CNormalProcess::MainLoop()
 */
 void CNormalProcess::OnExitProcess()
 {
+	/* 自動起動系の処理 */
+	const auto& hsp3 = GetHsp3();
+	if (hsp3.IsHspAssistantAutoStartEnabled())
+	{
+		hsp3.CloseAssist(NULL);
+	}
+
 	/* プラグイン解放 */
 	CPluginManager::getInstance()->UnloadAllPlugin();		// Mpve here	2010/7/11 Uchi
 }

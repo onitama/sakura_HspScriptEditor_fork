@@ -158,7 +158,7 @@ void CControlTray::DoGrepCreateWindow(HINSTANCE hinst, HWND msgParent, CDlgGrep&
 	/* 新規編集ウィンドウの追加 ver 0 */
 	SLoadInfo sLoadInfo;
 	sLoadInfo.cFilePath = L"";
-	sLoadInfo.eCharCode = CODE_UTF8;// CODE_NONE;
+	sLoadInfo.eCharCode = CODE_NONE;
 	sLoadInfo.bViewMode = false;
 	OpenNewEditor( hinst, msgParent, sLoadInfo, cCmdLine.GetStringPtr(),
 		false, NULL, GetDllShareData().m_Common.m_sTabBar.m_bNewWindow? true : false );
@@ -1092,7 +1092,7 @@ void CControlTray::OnNewEditor( bool bNewWindow )
 	// 編集ウインドウを開く
 	SLoadInfo sLoadInfo;
 	sLoadInfo.cFilePath = L"";
-	sLoadInfo.eCharCode = CODE_UTF8;	// CODE_NONE;
+	sLoadInfo.eCharCode = CODE_NONE;
 	sLoadInfo.bViewMode = false;
 	std::wstring strCurDir = CSakuraEnvironment::GetDlgInitialDir(true);
 	OpenNewEditor( m_hInstance, GetTrayHwnd(), sLoadInfo, NULL, false, strCurDir.c_str(), bNewWindow );

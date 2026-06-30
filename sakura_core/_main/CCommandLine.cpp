@@ -207,7 +207,7 @@ CCommandLine::CCommandLine() noexcept
  */
 void CCommandLine::ParseKanjiCodeFromFileName(LPWSTR pszExeFileName, int cchExeFileName)
 {
-	m_fi.m_nCharCode = CODE_UTF8;		// ファイル名からの推測はせずにUTF8に固定する(onitama)
+	// ファイル名からの推測はやめる(onitama)
 #if 0
 	for (int i = cchExeFileName - 1; 0 <= i; i--) {
 		if (pszExeFileName[i] == L'.') {
